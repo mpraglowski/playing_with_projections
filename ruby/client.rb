@@ -25,3 +25,5 @@ raw_data = read_from_file(stream)
 
 events = JSON.parse(raw_data).map(&method(:transform_date))
 puts "Number of events: #{events.count}"
+distinct_types = events.inject({}) {|acc, e| type = e['type']; acc[type] = acc.fetch(type,0)+1; acc}
+puts "Types of events:#{distinct_types.inspect}"
