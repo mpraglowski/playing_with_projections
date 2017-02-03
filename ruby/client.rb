@@ -10,7 +10,7 @@ end
 
 def read_from_file file_path
   puts "Reading from '#{file_path}'"
-  file_content = File.read(file_path)
+  File.read(file_path)
 end
 
 def transform_date event
@@ -26,4 +26,4 @@ raw_data = read_from_file(stream)
 events = JSON.parse(raw_data).map(&method(:transform_date))
 puts "Number of events: #{events.count}"
 distinct_types = events.inject({}) {|acc, e| type = e['type']; acc[type] = acc.fetch(type,0)+1; acc}
-puts "Types of events:#{distinct_types.inspect}"
+puts "Types of events: #{distinct_types.inspect}"
